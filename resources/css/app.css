@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: background-color 0.3s;
+    padding-left: 15px;
+    padding-top: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+}
+
+/* Background color when not scrolled */
+.navbar:not(.scrolled) {
+    background-color: transparent;
+}
+
+/* Background color when scrolled */
+.navbar.scrolled {
+    background-color: white; /* Change to your desired color */
+}
+
+.hidden {
+    display: none;
+}
+
+/*unread*/
+.required::after {
+    content: " *";
+    color: red;
+}
+
+.message-container {
+    display: flex;
+    flex-direction: column;
+}
+.message {
+    display: flex;
+    flex-direction: column;
+    max-width: 70%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    word-wrap: break-word;
+}
+.message.user-message {
+    align-self: flex-end;
+    background-color: #4ade80;
+    text-align: right;
+}
+.message.other-message {
+    align-self: flex-start;
+    background-color: #e5e5ea;
+    text-align: left;
+}
