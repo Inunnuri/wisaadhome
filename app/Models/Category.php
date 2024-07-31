@@ -9,17 +9,14 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Category extends Model
 {
     use HasFactory;
-    //terhubung ke post
+    //terhubung ke tabel posts
     public function posts(): HasMany{
         return $this->hasMany(Post::class,'category_id');
     }
-    //terhubung ke product
+    //terhubung ke tabel products
     public function product(): HasMany{
-        return $this->hasMany(Product::class);
-    }
-
-    //terhubung ke item
-    public function item(): HasMany{
-        return $this->hasMany(Item::class);
+        return $this->hasMany(Product::class,'category_id');
     }
 }
+
+// done

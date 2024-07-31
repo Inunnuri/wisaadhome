@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Profile;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -15,11 +14,6 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $profile = $user->profile ?: new Profile(['user_id' => $user->id]);
-
-        // Jika profil belum ada, buat profil baru dengan default values
-        if (!$profile) {
-            $profile = new Profile(['user_id' => $user->id]);
-        }
 
     return view('profile', ['title' => 'Lengkapi Profile mu!', 'profile' => $profile]);
     }
@@ -71,6 +65,8 @@ class ProfileController extends Controller
         $profile->save();
         Log::info('Profile saved successfully');
 
-        return redirect()->route('profile.update')->with('success', 'Profile updated successfully!');
+        return redirect()->route('profile.show')->with('success', 'Profile updated successfully!');
 }
 }
+
+// done

@@ -15,8 +15,9 @@ class FavoriteController extends Controller
         $userId = Auth::id();
         $favorites = Favorite::with('product')->where('user_id', $userId)->get();
         
-        // Dapatkan daftar produk favorit berdasarkan user_id
+        // Menyaring ID produk dari koleksi favorit.
         $favoriteProductIds = $favorites->pluck('product_id')->toArray();
+        // Mengambil produk yang ID-nya ada dalam array favoriteProductIds.
         $products = Product::whereIn('id', $favoriteProductIds)->get();
         
         return view('favorite', compact('title', 'favorites', 'favoriteProductIds', 'products'));
@@ -48,3 +49,5 @@ class FavoriteController extends Controller
         return redirect()->back()->with('success', 'Product removed from favorites');
     }
 }
+
+//done

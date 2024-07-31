@@ -9,9 +9,9 @@
                <address class="flex items-center mb-6 not-italic">
                    <div class="inline-flex">
                        <div>
-                           <a href="/authors/{{$post->author->name}}" rel="author" class="hover:underline text-xl font-bold text-gray-900 dark:text-white">{{$post->author->name}}</a>
+                           <a href="{{route('author.posts', $post->author->name)}}" rel="author" class="hover:underline text-xl font-bold text-gray-900 dark:text-white">{{$post->author->name}}</a>
                            <p class="text-sm text-gray-500 dark:text-gray-400">{{$post->created_at->diffForHumans()}}</p>
-                           <a href="/categories/{{$post->category->slug}}">
+                           <a href="{{route('category.posts', $post->category->name )}}">
                              <span class="bg-{{$post->category->color}}-100 text-primary-800 text-xs font-medium items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800 hover:underline">
                                  {{$post->category->name}}
                              </span>
@@ -22,7 +22,7 @@
                <h1 class="mb-2 text-xl md:text-2xl lg:text-3xl font-extrabold leading-tight text-gray-900 dark:text-white">{{$post ['title']}}</h1>
            </header>
            <p class="lead mb-2">{{$post ['body']}}</p>
-           <a href="/posts" class="font-medium text-primary-600">Back &laquo;</a>
+           <a href="{{route('posts.index')}}" class="font-medium text-primary-600">Back &laquo;</a>
        </article>
    </div>
  </main>

@@ -5,13 +5,12 @@
   <section class="bg-white dark:bg-gray-900">
     <div class="items-center py-4 md:py-6 lg:py-8 px-2 mx-auto max-w-screen-xl md:grid md:grid-cols-2 lg:grid lg:grid-cols-2">
         <div class="font-light text-gray-500 dark:text-gray-400">
-            <h2 class="text-2xl md:text-3xl lg:text-4xl mb-2 tracking-tight font-extrabold text-gray-900 dark:text-white">We didn't reinvent the wheel</h2>
-            <p class="lg:mt-4 lg:text-lg">We are strategists, designers and developers. Innovators and problem solvers. Small enough to be simple and quick, but big enough to deliver the scope you want at the pace you need. Small enough to be simple and quick, but big enough to deliver the scope you want at the pace you need.</p>
-            <p  class="lg:mt-4 lg:text-lg">We are strategists, designers and developers. Innovators and problem solvers. Small enough to be simple and quick.</p>
+            <h2 class="text-2xl md:text-3xl lg:text-4xl mb-2 tracking-tight font-extrabold text-gray-900 dark:text-white">Put your trust in us !</h2>
+            <p class="lg:mt-4 lg:text-lg">Wisaadhome is a digital platform designed to make it easy for users to buy, sell, or rent properties. Whether you are a property owner looking to sell or rent out your house, apartment, or land, or a property seeker searching for a place to live or invest in, Wisaadhome provides everything you need.</p>
         </div>
         <div class="grid grid-cols-2 gap-4 mt-8">
-            <img class="w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-2.png" alt="office content 1">
-            <img class="mt-4 w-full lg:mt-10 rounded-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-1.png" alt="office content 2">
+            <img class="w-full rounded-lg" src="../img/fasad.jpg" alt="fasad">
+            <img class="mt-4 w-full lg:mt-10 rounded-lg" src="../img/interior.jpeg" alt="interior">
         </div>
     </div>
 </section>
@@ -24,9 +23,9 @@
           <h2 class="mb-4 text-2xl md:text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Mulai cari rumah impianmu!</h2>
           <p class="mb-6 font-light text-gray-500 dark:text-gray-400 md:text-lg lg:text-lg">Gak perlu ribet panas-panasan buat nyari rumah, cukup dari rumah.</p>
           @auth
-          <a href="/item" class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm md:text-m lg:text-lg px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">Mulai</a>
+          <a href="{{route('item')}}" class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm md:text-m lg:text-lg px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">Mulai</a>
           @else
-          <a href="/register" class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm md:text-m lg:text-lg px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">Buat Akun</a>
+          <a href="{{route('register')}}" class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm md:text-m lg:text-lg px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">Buat Akun</a>
           @endauth
       </div>
   </div>
@@ -47,7 +46,7 @@
                     @foreach ($posts as $post)
                     <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                       <div class="flex justify-between items-center mb-5">
-                        <a href="/categories/{{$post->category->slug}}">
+                        <a href="{{route('category.posts' , $post->category->name)}}">
                         <span class="bg-{{$post->category->color}}-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
                             {{$post->category->name}}
                         </span>
@@ -60,7 +59,7 @@
                       <p class="mb-4 font-light text-gray-500 dark:text-gray-400">{{Str::limit($post ['body'], 200)}}</p>
                       <div class="flex justify-between items-center">
                         <div class="flex items-center space-x-4">
-                            <a href="/authors/{{$post->author->name}}" class="hover:underline">
+                            <a href="{{route('author.posts' , $post->author->name)}}" class="hover:underline">
                             <span class="font-medium text-sm dark:text-white">
                               {{$post->author->name}}
                             </span>
@@ -77,7 +76,7 @@
               </div>
                   {{-- link lihat artikel lainnya--}}
               <div class="flex justify-center">
-                    <a href="/posts" class="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline">
+                    <a href="{{route('posts.index')}}" class="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline">
                     Lihat Artikel Lainnya</a>
               </div>
             </div>
@@ -132,7 +131,7 @@
               @else
                  <div class="mt-4">
                 <p class="text-sm font-medium text-gray-500 dark:text-gray-400 inline-flex">chat penjual ?</p>
-                <a href="/register" class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">Buat Akun</a>
+                <a href="{{route('register')}}" class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">Buat Akun</a>
                  </div>
               @endauth
             </div>

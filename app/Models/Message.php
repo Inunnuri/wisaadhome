@@ -15,6 +15,7 @@ class Message extends Model
         'read_at'
     ];
 
+    // $dates, Laravel secara otomatis akan memparsing nilai dari kolom tersebut sebagai objek Carbon saat diakses. Ini sangat berguna untuk kolom-kolom yang menyimpan informasi tanggal, seperti created_at, updated_at, deleted_at, atau kolom khusus lainnya seperti read_at dalam kasus Anda.
     protected $dates = [
         'read_at',
     ];
@@ -29,3 +30,5 @@ class Message extends Model
         return $this->belongsTo(User::class);
     }
 }
+
+// done

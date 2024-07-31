@@ -47,38 +47,44 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    //relasi ke profile
+
+
+    //relasi ke tabel profiles
     public function profile(): HasOne
     {
         return $this->hasOne(Profile::class, 'user_id');
     }
 
-    //relation ke post
+    //relation ke posts
     public function posts(): HasMany{
         return $this->hasMany(Post::class,'author_id');
     }
-    //relation ke product
+    //relation ke products
     public function products(): HasMany{
         return $this->hasMany(Product::class, 'user_id');
     }
 
-    //relation ke item
-    public function items(): HasMany{
-        return $this->hasMany(Item::class);
-    }
     //relation ke favorite
     public function favorites(): HasMany{
-        return $this->hasMany(Favorite::class);
+        return $this->hasMany(Favorite::class,'user_id');
     }
 
-    // Relasi dengan model Message
-    public function sentMessages()
+    // Relasi dengan model conversations
+    public function seller()
     {
-        return $this->hasMany(Message::class, 'sender_id');
+        return $this->hasMany(Conversation::class, 'seller_id');
     }
 
-    public function receivedMessages()
+    public function buyer()
     {
-        return $this->hasMany(Message::class, 'receiver_id');
+        return $this->hasMany(Conversation::class, 'buyer_id');
+    }
+
+    // relasi tabel messages
+    public function messages()
+    {
+        return $this->hasMany(Message::class, 'user_id');
     }
 }
+
+// done

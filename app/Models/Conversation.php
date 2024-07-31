@@ -19,7 +19,7 @@ class Conversation extends Model
 
     public function messages()
     {
-        return $this->hasMany(Message::class);
+        return $this->hasMany(Message::class, 'conversation_id');
     }
 
     public function product()
@@ -29,16 +29,19 @@ class Conversation extends Model
 
     public function seller()
     {
-        return $this->belongsTo(User::class, 'seller_id');
+        return $this->belongsTo(User::class);
     }
 
     public function buyer()
     {
-        return $this->belongsTo(User::class, 'buyer_id');
+        return $this->belongsTo(User::class);
     }
 
     public function unreadMessagesCount()
     {
+        // dimana pesan2 yang diterima oleh id yang sedang login, dan read_at dalam kondisi null artinya belum dibaca
         return $this->messages()->where('user_id', '!=', Auth::id())->whereNull('read_at')->count();
     }
 }
+
+// done

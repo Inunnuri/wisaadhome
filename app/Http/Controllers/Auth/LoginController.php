@@ -40,10 +40,6 @@ class LoginController extends Controller
         ]);
     }
 
-    public function signout(Request $request)
-    {
-        $this->logout($request);
-    }
     public function logout(Request $request)
 {
     Auth::logout();
@@ -55,3 +51,4 @@ class LoginController extends Controller
     return redirect('/');
 }
 }
+// done

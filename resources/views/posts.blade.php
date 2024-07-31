@@ -8,7 +8,7 @@
           @foreach ($posts as $post)
           <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
             <div class="flex justify-between items-center mb-5">
-              <a href="/categories/{{$post->category->slug}}">
+              <a href="{{route('category.posts', $post->category->name )}}">
               <span class="bg-{{$post->category->color}}-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800 hover:underline">
                   {{$post->category->name}}
               </span>
@@ -21,7 +21,7 @@
             <p class="mb-4 font-light text-gray-500 dark:text-gray-400">{{Str::limit($post ['body'], 200)}}</p>
             <div class="flex justify-between items-center">
               <div class="flex items-center space-x-4">
-                  <a href="/authors/{{$post->author->name}}" class="hover:underline">
+                  <a href="{{route('author.posts', $post->author->name )}}" class="hover:underline">
                   <span class="font-medium text-sm dark:text-white">
                     {{$post->author->name}}
                   </span>

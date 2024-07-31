@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\Product;
 use App\Models\Favorite;
-use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -21,3 +20,5 @@ class HomeController extends Controller
         return view('home', compact('title', 'posts', 'products', 'favoriteProductIds'));
     }
 }
+
+// done

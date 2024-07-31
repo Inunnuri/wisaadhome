@@ -19,9 +19,11 @@ class Post extends Model
         return $this->belongsTo(User::class);
 
     }
-    //terhubung ke tabel category
+    //terhubung ke tabel categories
     public function category():BelongsTo {
         return $this->belongsTo(Category::class);
 
     }
 }
+
+// done

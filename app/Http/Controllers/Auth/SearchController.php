@@ -22,12 +22,12 @@ class SearchController extends Controller
             return redirect()->back()->with('status', 'Masukkan kata kunci untuk pencarian.');
         }
 
-        // Pencarian di tabel produk
+        // Pencarian produk
         $items = Product::where('nama', 'LIKE', "%{$query}%")
         ->orWhere('price', 'LIKE', "%{$query}%")
         ->get();
 
-          // Pencarian di tabel produk favorit berdasarkan product_id
+          // Pencarian produk favorit berdasarkan product_id
         $favoriteProductIds = Favorite::where('user_id', $userId)
                                       ->pluck('product_id')
                                       ->toArray();
@@ -38,7 +38,7 @@ class SearchController extends Controller
                             })
                             ->get();
 
-        // Pencarian di tabel produk saya
+        // Pencarian produk saya
         $products = Product::where('user_id', $userId)
                              ->where(function($q) use ($query) {
                                  $q->where('nama', 'LIKE', "%{$query}%")
@@ -46,7 +46,7 @@ class SearchController extends Controller
                              })
                              ->get();
 
-        // Pencarian di tabel posts
+        // Pencarian posts
         $posts = Post::where('title', 'LIKE', "%{$query}%")
                       ->orWhere('body', 'LIKE', "%{$query}%")
                       ->get();
@@ -54,3 +54,5 @@ class SearchController extends Controller
         return view('search', compact('products', 'posts', 'query', 'title', 'favoriteProductIds', 'favorites', 'items'));
     }
 }
+
+//done

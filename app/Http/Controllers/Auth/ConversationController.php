@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ConversationController extends Controller
 {
+    //Menampilkan daftar semua percakapan yang terkait dengan pengguna yang sedang login.
     public function index()
     {
         $conversations = Conversation::with('product', 'seller', 'buyer')
@@ -20,6 +21,7 @@ class ConversationController extends Controller
         return view('conversations.index', compact('conversations'));
     }
 
+    //Menampilkan detail percakapan tertentu dan memperbarui status baca pesan jika diperlukan.
     public function show($id)
     {
         $conversation = Conversation::with('messages.user')
@@ -34,6 +36,7 @@ class ConversationController extends Controller
         return view('conversations.show', compact('conversation'));
     }
 
+    //Membuat percakapan baru atau menemukan percakapan yang sudah ada untuk produk tertentu antara pengguna yang sedang login dan penjual.
     public function create($productId)
     {
         $product = Product::findOrFail($productId);
@@ -51,6 +54,6 @@ class ConversationController extends Controller
 
         return redirect()->route('conversations.show', $conversation->id);
     }
-
-    
 }
+
+// done

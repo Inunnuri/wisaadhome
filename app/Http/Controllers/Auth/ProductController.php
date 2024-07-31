@@ -10,20 +10,14 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    //1. menampilkan 50 product di halaman home
-    public function home()
-    {
-        $products= Product::latest()->take(50)->get();
-        return view('home', compact('products'));
-    }
-
-
      // 2. Menampilkan produk milik pengguna yang sedang login
      public function index()
      {
          $user = auth()->user();
          $userProducts = Product::where('user_id', $user->id)->get();
-         return view('products.index', compact('userProducts'));
+         $title = 'Your Product';
+         $products = $user->products;
+         return view('product', compact('userProducts','title','products'));
      }
 
 
@@ -42,8 +36,9 @@ class ProductController extends Controller
 
         // Ambil semua produk yang dimiliki oleh pengguna saat ini melalui relasi
          $products = $user->products;
+         $title = 'Your Product';
 
-     return view('product',['title' => 'Your Post'], compact('products'));
+     return view('product', compact('products', 'title'));
     }
 
 
@@ -102,7 +97,7 @@ class ProductController extends Controller
         $product->save();
         Log::info('Product saved successfully');
 
-        return redirect()->route('add.show')->with('success', 'Update Product successfully!');
+        return redirect()->route('product.index')->with('success', 'Update Product successfully!');
 }
 
 
@@ -131,7 +126,7 @@ public function edit(Request $request, $id)
     // Cari produk berdasarkan ID
     $product = Product::find($id);
     if (!$product || $product->user_id != $user->id) {
-        return redirect()->route('add.show')->with('error', 'Produk tidak ditemukan atau Anda tidak memiliki akses.');
+        return redirect()->route('product.index')->with('error', 'Produk tidak ditemukan atau Anda tidak memiliki akses.');
     }
     
    // Handle file upload
@@ -162,7 +157,7 @@ public function edit(Request $request, $id)
     $product->save();
     Log::info('Product saved successfully');
 
-    return redirect()->route('add.show')->with('success', 'Update Product successfully!');
+    return redirect()->route('product.index')->with('success', 'Update Product successfully!');
 }
 
 
@@ -190,5 +185,6 @@ public function destroy($id)
     Log::info("Product deleted successfully: $id");
     return response()->json(['success' => true]);
 }
-
 }
+
+// done

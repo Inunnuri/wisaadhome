@@ -11,11 +11,8 @@ class Jenis extends Model
     use HasFactory;
     //terhubung ke product
     public function product(): HasMany{
-        return $this->hasMany(Product::class);
-    }
-
-    //terhubung ke item
-    public function item(): HasMany{
-        return $this->hasMany(Item::class);
+        return $this->hasMany(Product::class,'jenis_id');
     }
 }
+
+// done

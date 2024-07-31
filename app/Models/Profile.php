@@ -13,14 +13,14 @@ class Profile extends Model
         'user_id','name', 'email','country', 'street_address', 'city', 'region', 'postal_code', 'about','profile_photo',
     ];
 
-     //Eager Loading by Default
-     protected $with = ['user'];
-
     protected $attributes = [
         'profile_photo' => 'default.jpg',
     ];
-    //relasi table user
+
+    //relasi table users
     public function user():BelongsTo {
         return $this->belongsTo(User::class);
     }
 }
+
+// done

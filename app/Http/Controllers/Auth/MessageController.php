@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Message;
 use App\Models\Conversation;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 
 class MessageController extends Controller
 {
+    // menangani penyimpanan (store) pesan dalam percakapan tertentu. 
     public function store(Request $request, $conversationId)
     {
         $request->validate([
@@ -29,3 +29,5 @@ class MessageController extends Controller
     }
 
 }
+
+// done

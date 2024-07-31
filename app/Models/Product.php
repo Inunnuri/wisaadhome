@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Product extends Model
 {
@@ -13,18 +14,15 @@ class Product extends Model
         'user_id','category_id','nama', 'jenis_id','price', 'alamat', 'description','post_photo',
     ];
 
-    // Nama tabel yang digunakan oleh model ini
-    protected $table = 'products';
-
      //Eager Loading by Default
      protected $with = ['user', 'category'];
 
-     //relasi table user
+     //relasi table users
      public function user():BelongsTo {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    //terhubung ke tabel category
+    //terhubung ke tabel categories
     public function category():BelongsTo {
         return $this->belongsTo(Category::class);
 
@@ -35,14 +33,16 @@ class Product extends Model
         return $this->belongsTo(Jenis::class);
 
     }
-
+    // relasi tabel favorites
     public function favoritedBy()
     {
-        return $this->hasMany(Favorite::class);
+        return $this->hasMany(Favorite::class,'product_id');
     }
 
-    public function message()
+    public function conversations(): HasMany
     {
-        return $this->hasMany(Message::class);
+        return $this->hasMany(Conversation::class, 'product_id');
     }
 }
+
+// done

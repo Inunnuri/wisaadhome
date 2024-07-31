@@ -25,7 +25,8 @@ class ItemController extends Controller
     public function index(User $user)
     {
         $title = 'Diposting oleh ' . $user->name;
-        $products = Product::where('user_id', $user->id)->orderBy('created_at', 'desc')->get(); // Mengambil produk yang diposting oleh pengguna
+         // Mengambil produk yang diposting oleh pengguna
+        $products = Product::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
         $favorites = Favorite::where('user_id', Auth::id())->get();
         $favoriteProductIds = $favorites->pluck('product_id')->toArray();
         return view('item', compact('title', 'products', 'user', 'favoriteProductIds'));
@@ -58,3 +59,5 @@ class ItemController extends Controller
         return view('detail', compact( 'product', 'favoriteProductIds'));
     }
 }
+
+//done

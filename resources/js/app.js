@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function deleteProduct(productId) {
         console.log("Deleting product with ID:", productId);
-        fetch(`/delete-product/${productId}`, {
+        fetch(`/product/delete/${productId}`, {
             method: "DELETE",
             headers: {
                 "X-CSRF-TOKEN": document

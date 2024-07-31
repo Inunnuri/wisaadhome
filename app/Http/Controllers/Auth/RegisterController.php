@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Log;
 
     public function register(Request $request)
     {
-         // Mencatat data permintaan (request) untuk debugging.
          Log::info('Request Data:', $request->all());
          //Memvalidasi input pengguna menggunakan metode validator.
          $this->validator($request->all())->validate();
@@ -31,7 +30,7 @@ use Illuminate\Support\Facades\Log;
          // Login user secara otomatis setelah registrasi
          auth()->login($user);
  
-         return redirect()->route('profile.show')->with('success', 'Registration successful!');
+         return redirect()->route('home')->with('success', 'Registration successful!');
     }
 
     //sesuaikan dengan struktur table
@@ -56,4 +55,6 @@ use Illuminate\Support\Facades\Log;
         ]);
     }
 }
+
+// done
 
