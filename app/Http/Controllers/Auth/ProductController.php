@@ -13,7 +13,7 @@ class ProductController extends Controller
      // 2. Menampilkan produk milik pengguna yang sedang login
      public function index()
      {
-         $user = auth()->user();
+        $user = Auth::user();
          $userProducts = Product::where('user_id', $user->id)->get();
          $title = 'Your Product';
          $products = $user->products;
@@ -176,7 +176,7 @@ public function destroy($id)
         return response()->json(['success' => false]);
     }
 
-    if ($product->user_id !== auth()->id()) {
+    if ($product->user_id !== Auth::id()) {
         Log::error("User is not authorized to delete product ID: $id");
         return response()->json(['success' => false]);
     }

@@ -28,7 +28,9 @@ use Illuminate\Support\Facades\Log;
          Log::info('User Created:', $user->toArray());
  
          // Login user secara otomatis setelah registrasi
-         auth()->login($user);
+         /** @var \Illuminate\Auth\AuthManager $auth */
+$auth = auth();
+$auth->login($user);
  
          return redirect()->route('home')->with('success', 'Registration successful!');
     }
